@@ -13,14 +13,14 @@ function F=Fi(q,t,ParyObrotowe, ParyPostepowe);
  for m=1:nobr
         i=3*ParyObrotowe(m,1);
         j=3*ParyObrotowe(m,2);
-        s_a = ParyObrotowe(m,3:4);
-        s_b = ParyObrotowe(m,3:4);
+        s_a = ParyObrotowe(m,3:4)';
+        s_b = ParyObrotowe(m,5:6)';
         if i == 0
-            F(k+1:k+2,1)=s_a - q(j-2:j-1,1)-Rot(q(j))*s_b;
+            F(k+1:k+2)=s_a - q(j-2:j-1)-Rot(q(j))*s_b;
         elseif j == 0
-            F(k+1:k+2,1)=q(i-2:i-1,1)+Rot(q(i))*s_a-s_b;
+            F(k+1:k+2)=q(i-2:i-1)+Rot(q(i))*s_a-s_b;
         else
-            F(k+1:k+2,1)=q(i-2:i-1,1)+Rot(q(i))*s_a-q(j-2:j-1,1)-Rot(q(j))*s_b;
+            F(k+1:k+2)=q(i-2:i-1)+Rot(q(i))*s_a-q(j-2:j-1)-Rot(q(j))*s_b;
         end
         k=k+2;
  end
@@ -33,26 +33,26 @@ function F=Fi(q,t,ParyObrotowe, ParyPostepowe);
      i=3*ParyPostepowe(m,1);
      j=3*ParyPostepowe(m,2);
      fi0 = ParyPostepowe(m,3);
-     s_b = ParyPostepowe(m,8:9)
-     s_a = ParyPostepowe(m,6:7)
-     vj = ParyPostepowe(m,4:5)
+     s_b = ParyPostepowe(m,8:9)';
+     s_a = ParyPostepowe(m,6:7)';
+     vj = ParyPostepowe(m,4:5)';
      if j==0
          rj == [0 0]';
          kat_j = 0;
      else
-         rj = q(j-2:j-1,1);
+         rj = q(j-2:j-1);
          kat_j = q(j);
      end
      if i==0
          ri == [0 0]';
          kat_i = 0;
      else
-         ri = q(i-2:i-1,1);;
+         ri = q(i-2:i-1);
          kat_i = q(i)
      end
         
-     F(k+1,1)=kat_i-kat_j-fi0; 
-     F(k+2,1)=(rj+Rot(kat_j)*s_b-ri-Rot(kat_i)*s_a)'*Rot(kat_j)*vj;
+     F(k+1)=kat_i-kat_j-fi0; 
+     F(k+2)=(rj+Rot(kat_j)*s_b-ri-Rot(kat_i)*s_a)'*Rot(kat_j)*vj;
      
      k=k+2;
  end
