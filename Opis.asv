@@ -30,9 +30,4 @@ ParyObrotowe: kolejne kolumny
 - s_a (dwie kolumny)
 - s_b (dwie kolumny)
 
-ParyPostepowe: kolejne kolumny
-- indeksy 1 i 2 czlonu (2 kolumny)
-- k¹t fi0
-- wersor prostopad³y do osi pary (2 kolumny)
-- wektor s_a (2 kolumny)
-- wektor s_b (2 kolumny)
+Pary

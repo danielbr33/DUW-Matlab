@@ -36,23 +36,13 @@ function F=Fi(q,t,ParyObrotowe, ParyPostepowe);
      s_b = ParyPostepowe(m,8:9)
      s_a = ParyPostepowe(m,6:7)
      vj = ParyPostepowe(m,4:5)
-     if j==0
-         rj == [0 0]';
-         kat_j = 0;
-     else
-         rj = q(j-2:j-1,1);
-         kat_j = q(j);
-     end
-     if i==0
-         ri == [0 0]';
-         kat_i = 0;
-     else
-         ri = q(i-2:i-1,1);;
-         kat_i = q(i)
-     end
+     rj = q(j-2:j-1,1);
+     ri = q(i-2:i-1,1);;
+     kat_i = q(i)
+     kat_j = q(j);
         
      F(k+1,1)=kat_i-kat_j-fi0; 
-     F(k+2,1)=(rj+Rot(kat_j)*s_b-ri-Rot(kat_i)*s_a)'*Rot(kat_j)*vj;
+     F(k+2,1)=(rj+Rot(q(j))*s_b-ri-Rot(q(i))*s_a)'*Rot(q(j))*vj;
      
      k=k+2;
  end
