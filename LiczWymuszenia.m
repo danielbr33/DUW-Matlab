@@ -1,14 +1,26 @@
-function [x] = LiczWymuszenia(t, rzadPochodnej, numerWymuszenia)
+function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia)
     parametryFunkcji = WczytajWymuszenia;
-    L = parametryFunkcji(numerWymuszenia, 1);
-    a = parametryFunkcji(numerWymuszenia, 2);
-    w = parametryFunkcji(numerWymuszenia, 3);
-    fi = parametryFunkcji(numerWymuszenia, 4);
+    czlon1 = parametryFunkcji(numerWymuszenia, 1);
+    czlon2 = parametryFunkcji(numerWymuszenia, 2);
+    L = parametryFunkcji(numerWymuszenia, 3);
+    a = parametryFunkcji(numerWymuszenia, 4);
+    w = parametryFunkcji(numerWymuszenia, 5);
+    fi = parametryFunkcji(numerWymuszenia, 6);
+    kat = parametryFunkcji(numerWymuszenia, 7);
     if rzadPochodnej == 0
-        x = L + a*sin(w*t+fi);
+        a = L + a*sin(w*t+fi);
+        x(1,1) = a*cos(kat);
+        x(2,1) = a*sin(kat);
+        x = Rot(Q(czlon*3))*x;
     elseif rzadPochodnej == 1
-        x = w*a*cos(w*t+fi);
+        a = w*a*cos(w*t+fi);
+        x(1,1) = a*cos(kat);
+        x(2,1) = a*sin(kat);
+        x = Rot(Q(czlon1*3))*x;
     elseif rzadPochodnej == 2
-        x = -w*w*a*sin(w*t+fi);
+        a = -w*w*a*sin(w*t+fi);
+        x(1,1) = a*cos(kat);
+        x(2,1) = a*sin(kat);
+        x = Rot(Q(czlon*3))*x;
     end
 end

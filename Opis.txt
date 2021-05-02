@@ -18,10 +18,12 @@ ParyObrotowe.txt
 - indeks drugiego czlonu
 - wspolrzedne osi obrotu
 
-Wymuszenia.txt 
+Wymuszenia.txt
 - liczba wymuszen
+- numery cz³onów (2 wiersze)
 - wspolrzedne koncow par postepowych
-- parametry a, w, fi funkcji wymuszenia
+- parametry L, a, w, fi funkcji wymuszenia
+- poczatkowy kat orientacji pary postepowej
 
 Zmienne:
 ParyObrotowe: kolejne kolumny

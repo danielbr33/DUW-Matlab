@@ -1,12 +1,12 @@
-function [CoordinateSystem, RevoluteJoint, PrismaticJoint] = CzlonySrodki();
-    temp = fopen('Dane/UkladyWspolrzednych.txt', 'r');
+function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
+    temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
     number = str2num(fgetl(temp));
     for i=1:number
         dane = str2num(fgetl(temp));
         CoordinateSystem(i,:)=[dane(1) dane(2) dane(3)];
     end
 
-    temp = fopen('Dane/ParyObrotowe.txt', 'r');
+    temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
     number = str2num(fgetl(temp));
     for i=1:number
         dane = str2num(fgetl(temp));
@@ -34,7 +34,7 @@ function [CoordinateSystem, RevoluteJoint, PrismaticJoint] = CzlonySrodki();
         RevoluteJoint(i,:) = [czlon1 czlon2 sa sb]; 
     end 
     
-    temp = fopen('Dane/ParyPostepowe.txt', 'r');
+    temp = fopen('DanePliki/ParyPostepowe.txt', 'r');
     number = str2num(fgetl(temp));
     for i=1:number
         dane = str2num(fgetl(temp));
@@ -67,4 +67,14 @@ function [CoordinateSystem, RevoluteJoint, PrismaticJoint] = CzlonySrodki();
         PrismaticJoint(i,:) = [czlon1 czlon2 fi v sa sb];
         PrismaticEnds(i,:) = [punktA, punktB];
     end
+    
+    temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
+    number = str2num(fgetl(temp));
+    q = zeros(number*3,1);
+    for i=1:1:number
+        q(i*3-2:i*3) = CoordinateSystem(i, 1:3);
+    end
 end
+
+    
+    
