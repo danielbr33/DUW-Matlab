@@ -5,6 +5,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
         dane = str2num(fgetl(temp));
         CoordinateSystem(i,:)=[dane(1) dane(2) dane(3)];
     end
+    fclose(temp);
 
     temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
     number = str2num(fgetl(temp));
@@ -33,6 +34,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
         sb = OsObrotu - ukladWspolrz2;
         RevoluteJoint(i,:) = [czlon1 czlon2 sa sb]; 
     end 
+    fclose(temp);
     
     temp = fopen('DanePliki/ParyPostepowe.txt', 'r');
     number = str2num(fgetl(temp));
@@ -67,6 +69,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
         PrismaticJoint(i,:) = [czlon1 czlon2 fi v sa sb];
         PrismaticEnds(i,:) = [punktA, punktB];
     end
+    fclose(temp);
     
     temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
     number = str2num(fgetl(temp));
@@ -74,6 +77,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
     for i=1:1:number
         q(i*3-2:i*3) = CoordinateSystem(i, 1:3);
     end
+    fclose(temp);
 end
 
     

@@ -2,25 +2,31 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
 
  temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
  nobr = str2num(fgetl(temp));
+ fclose(temp);
  
  temp = fopen('DanePliki/ParyPostepowe.txt', 'r');
  npos = str2num(fgetl(temp));
+ fclose(temp);
+ 
+ temp = fopen('DanePliki/Wymuszenia.txt', 'r');
+ nwym = str2num(fgetl(temp));
+ fclose(temp);
  
  k=0;                         %licznik równań więzów
- F=zeros(2*(nobr+npos),1);    %deklaracja rozmiaru wektora
+ F=zeros(2*(nobr+npos+nwym),1);    %deklaracja rozmiaru wektora
     
- %%na podstawie wzoru 2.18
+ %% na podstawie wzoru 2.18
  for m=1:nobr
         i=3*ParyObrotowe(m,1);
         j=3*ParyObrotowe(m,2);
         s_a = ParyObrotowe(m,3:4)';
         s_b = ParyObrotowe(m,5:6)';
         if i == 0
-            F(k+1:k+2)=s_a - Q(j-2:j-1)-Rot(Q(j))*s_b;
+            F(k+1:k+2)=F(k+1:k+2) + s_a - Q(j-2:j-1)-Rot(Q(j))*s_b;
         elseif j == 0
-            F(k+1:k+2)=Q(i-2:i-1)+Rot(Q(i))*s_a-s_b;
+            F(k+1:k+2)=F(k+1:k+2) + Q(i-2:i-1)+Rot(Q(i))*s_a-s_b;
         else
-            F(k+1:k+2)=Q(i-2:i-1)+Rot(Q(i))*s_a-Q(j-2:j-1)-Rot(Q(j))*s_b;
+            F(k+1:k+2)=F(k+1:k+2) + Q(i-2:i-1)+Rot(Q(i))*s_a-Q(j-2:j-1)-Rot(Q(j))*s_b;
         end
         k=k+2;
  end
@@ -48,8 +54,8 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
          kat_i = Q(i);
      end
         
-     F(k+1)=kat_i-kat_j-fi0; 
-     F(k+2)=(rj+Rot(kat_j)*s_b-ri-Rot(kat_i)*s_a)'*Rot(kat_j)*vj;
+     F(k+1)=F(k+1) + kat_i-kat_j-fi0; 
+     F(k+2)=F(k+2) + (rj+Rot(kat_j)*s_b-ri-Rot(kat_i)*s_a)'*Rot(kat_j)*vj;
      
      k=k+2;
  end
@@ -58,11 +64,13 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
   %Punkty A i B w srodkach czlonow, wiec sa i sb zerowe
   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
   number = str2num(fgetl(temp));
-  for k=1:1:number
+  for m=1:1:number
     dane = str2num(fgetl(temp));
     i=3*dane(1);
     j=3*dane(2);
-    f_AB = LiczWymuszenia(Q, t, 1, k);
-    F(k:k+1) = Rot(Q(i))*Q(j-2:j-1) - Rot(Q(i))*Q(i-2:i-1) - f_AB;
+    f_AB = LiczWymuszenia(Q, t, 1, m);
+    F(k+1:k+2) = F(k+1:k+2) + Rot(Q(i))*Q(j-2:j-1) - Rot(Q(i))*Q(i-2:i-1) - f_AB;
     k = k+2;
   end
+  fclose(temp);
+end

@@ -13,3 +13,5 @@ for i=1:number
      kat = atan(dane(10));  % do okreslenie przemieszczenia w ukladzie c4 i c6 
      parametryFunkcji(i,:) = [czlon1 czlon2 L, a, w, fi, kat];
 end
+fclose(temp);
+end
