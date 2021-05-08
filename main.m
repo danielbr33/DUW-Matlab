@@ -9,4 +9,5 @@ DDQ=zeros(length(Q),1);
 
 for t=0:DT:T_MAX
     FI=Fi(Q, t, ParyObrotowe, ParyPostepowe);
+    jakobian = Jakobian(Q, ParyObrotowe, ParyPostepowe);
 end

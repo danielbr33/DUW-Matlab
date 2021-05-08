@@ -13,7 +13,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
  fclose(temp);
  
  k=0;                         %licznik równań więzów
- F=zeros(2*(nobr+npos+nwym),1);    %deklaracja rozmiaru wektora
+ F=zeros(2*(nobr+npos)+nwym,1);    %deklaracja rozmiaru wektora
     
  %% na podstawie wzoru 2.18
  for m=1:nobr
@@ -60,7 +60,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
      k=k+2;
  end
  
-  %% Wiezy dynamiczne na podstawie wzor�w 2.25
+  %% Wiezy dynamiczne na podstawie wzor�w 2.28
   %Punkty A i B w srodkach czlonow, wiec sa i sb zerowe
   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
   number = str2num(fgetl(temp));
@@ -68,9 +68,10 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
     dane = str2num(fgetl(temp));
     i=3*dane(1);
     j=3*dane(2);
-    f_AB = LiczWymuszenia(Q, t, 1, m);
-    F(k+1:k+2) = F(k+1:k+2) + Rot(Q(i))*Q(j-2:j-1) - Rot(Q(i))*Q(i-2:i-1) - f_AB;
-    k = k+2;
+    uj = Rot(dane(10))*[1 0]';
+    f_AB = norm(LiczWymuszenia(Q, t, 1, m));
+    F(k+1) = F(k+1) + (Rot(Q(j))*uj)' * (Q(j-2:j-1) - Q(i-2:i-1)) - f_AB;
+    k = k+1;
   end
   fclose(temp);
 end

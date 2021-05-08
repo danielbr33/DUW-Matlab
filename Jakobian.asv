@@ -71,9 +71,9 @@ end
      i = dane(1);
      j = dane(2);
      vj = ParyPostepowe(m,4:5)';
-     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*vj)';
+     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) -(Rot(q(j))*vj)';
      Fq(k+1, i) =Fq(k+1, i);  %%brak zmian bo sa i sb zerowe
-     Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(q(j))*vj)';
-     Fq(k+1, j) = Fq(k+1, j) - (Rot(q(j))*vj)' *Om* (q(j-2:j-1)-q(i-2:i-1));
+     Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + Rot(q(i));
+     Fq(k+1:k+2, j) = Fq(k+1:k+2, j) + [0 0]';
  end
  fclose(temp);
