@@ -19,7 +19,7 @@ function Fq=Jakobian(q, ParyObrotowe, ParyPostepowe)
  fclose(temp);
 
 Om=[0 -1;1 0];
-Fq=zeros(2*(nobr+npos+nwym),3*ncz);      %deklaracja rozm macierzy
+Fq=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
 k=0;                                %licznik równañ wiêzów
 
 %% Obliczenie czesci Jakobianu dla par obrotowych 4.31-4.34
@@ -45,7 +45,7 @@ for m=1:1:nobr
     k=k+2;
 end
 
-%% Obliczenie czesci jakobiany dla par postepowych 2.43-2.46
+%% Obliczenie czesci jakobiany dla par postepowych 2.43-2.46 oraz 2.49-2.52
 for m=1:npos
     i=3*ParyPostepowe(m,1);
     j=3*ParyPostepowe(m,2);
@@ -70,10 +70,11 @@ end
      dane = str2num(fgetl(temp));
      i = dane(1);
      j = dane(2);
+     uj = Rot(dane(10))*[1 0]';
      vj = ParyPostepowe(m,4:5)';
-     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*vj)';
+     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*uj)';
      Fq(k+1, i) =Fq(k+1, i);  %%brak zmian bo sa i sb zerowe
-     Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(q(j))*vj)';
-     Fq(k+1, j) = Fq(k+1, j) - (Rot(q(j))*vj)' *Om* (q(j-2:j-1)-q(i-2:i-1));
+     Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(q(j))*uj)';
+     Fq(k+1, j) = Fq(k+1, j) - (Rot(q(j))*uj)' *Om* (q(j-2:j-1)-q(i-2:i-1));
  end
  fclose(temp);
