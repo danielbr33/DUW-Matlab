@@ -69,7 +69,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
     i=3*dane(1);
     j=3*dane(2);
     uj = Rot(dane(10))*[1 0]';
-    f_AB = norm(LiczWymuszenia(Q, t, 1, m));
+    f_AB = norm(LiczWymuszenia(Q, t, 0, m));
     F(k+1) = F(k+1) + (Rot(Q(j))*uj)' * (Q(j-2:j-1) - Q(i-2:i-1)) - f_AB;
     k = k+1;
   end
