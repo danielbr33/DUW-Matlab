@@ -14,10 +14,10 @@ function F = Gamma(Q,dQ)
  fclose(temp);
  
  Om=[0 -1;1 0];
- Fq=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
+ F=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
  k=0; 
  
-%%Pary obrotowe, wzór 2.42
+%%Pary obrotowe, wzÃ³r 2.42
 for m=1:1:nobr
     i=3*ParyObrotowe(m,1);
     j=3*ParyObrotowe(m,2);
@@ -43,7 +43,7 @@ for m=1:1:nobr
     k=k+2;
 end
 
-%% Pary postepowe, wzór  2.48 i 2.59
+%% Pary postepowe, wzÃ³r  2.48 i 2.59
  for m=1:npos
      i=3*ParyPostepowe(m,1);
      j=3*ParyPostepowe(m,2);
@@ -56,7 +56,7 @@ end
      k=k+2;
  end
  
-%% Wymuszenia, wzór 2.59, opis na stronie 52
+%% Wymuszenia, wzÃ³r 2.59, opis na stronie 52
   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
   number = str2num(fgetl(temp));
   for m=1:1:number
