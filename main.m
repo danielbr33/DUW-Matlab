@@ -27,7 +27,7 @@ for t=0:DT:T_MAX
     Q=Q+DQ*DT+DDQ*DT*DT/2   
     
     Q=NewRaph(Q,t,ParyObrotowe,ParyPostepowe);
-    DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe, WymObrotowe, WymPostepowe,t, Fi_dt);
+    DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
     DDQ=%tutaj wpisac funkcje liczenia przyspieszen, jej jeszcze nie ma
     
     T(i)=t;
