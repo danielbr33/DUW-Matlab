@@ -1,4 +1,4 @@
-function [DDQ] = Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t)
+function [DDQ] = Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma)
 
     temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
     ncz = str2num(fgetl(temp)); 
