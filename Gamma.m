@@ -44,7 +44,7 @@ for m=1:1:nobr
 end
 
 %% Pary postepowe, wzór  2.48 i 2.59
- for m=1:npos
+ for m=1:1:npos
      i=3*ParyPostepowe(m,1);
      j=3*ParyPostepowe(m,2);
      fi0 = ParyPostepowe(m,3);
