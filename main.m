@@ -1,8 +1,3 @@
-%tbh gubie sie w oznaczeniach :') i w sumie tak sobie mysle - w petli for
-%dobrze by bylo aktualizowac wartosci jakichs zmiennych "chwilowych" i
-%zapisywac je do konkretnych tablic
-
-%przyspieszenia jeszcze nie sa liczone
 
 DT = 0.1;
 T_MAX = 30;
