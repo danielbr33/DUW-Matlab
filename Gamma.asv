@@ -43,8 +43,27 @@ for m=1:1:nobr
     k=k+2;
 end
 
-%%Pary postepowe, wzór  2.59
-F(k+1) = F(k+1);
-
+%% Pary postepowe, wzór  2.59
+ for m=1:npos
+     i=3*ParyPostepowe(m,1);
+     j=3*ParyPostepowe(m,2);
+     fi0 = ParyPostepowe(m,3);
+     s_b = ParyPostepowe(m,8:9)';
+     s_a = ParyPostepowe(m,6:7)';
+     vj = ParyPostepowe(m,4:5)';
+     F(k+1) = F(k+1);
+     F(k+2) = F(k+2) + F(k+1) + (Rot(Q(j))*uj)'*(2*Om*(dQ(j-2:j-1)-dQ(i-2:i-1))*dQ(j)+(Q(j-2:j-1)-Q(i-2:i-1))*dQ(j)*dQ(j));
+ end
+ 
 %% Wymuszenia, wzór 2.59, opis na stronie 52
-F(k+1)=F(k+1)+
+  temp = fopen('DanePliki/Wymuszenia.txt', 'r');
+  number = str2num(fgetl(temp));
+  for m=1:1:number
+    dane = str2num(fgetl(temp));
+    i=3*dane(1);
+    j=3*dane(2);
+     uj = Rot(dane(10))*[1 0]';
+     vj = ParyPostepowe(m,4:5)';
+     F(k+1)=F(k+1) + (Rot(Q(j))*uj)'*(2*Om*(dQ(j-2:j-1)-dQ(i-2:i-1))*dQ(j)+(Q(j-2:j-1)-Q(i-2:i-1))*dQ(j)*dQ(j));
+    k=k+1;
+ end
