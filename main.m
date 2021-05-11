@@ -23,7 +23,7 @@ for t=0:DT:T_MAX
     
     Q=NewRaph(Q,t,ParyObrotowe,ParyPostepowe);
     DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
-    DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t);
+    DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma);
     
     T(i)=t;
     Q_tab(i)=Q1;
