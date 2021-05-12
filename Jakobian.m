@@ -92,6 +92,7 @@ end
 
      Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(fij)*uj)';
      Fq(k+1, j) = Fq(k+1, j) - (Rot(fij)*uj)' *Om* (rj-ri-Rot(fii)*sa);
+     k=k+1;
      
  end
  fclose(temp);
