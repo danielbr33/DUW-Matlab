@@ -11,7 +11,7 @@ for i=1:number
      a = L/3;
      w = dane(8);
      fi = dane(9);
-     kat = atan2(dane(6)-dane(4), dane(5)-dane(3));  % do okreslenie przemieszczenia w ukladzie c4 i c6 
+     kat = atan( (dane(6)-dane(4))/(dane(5)-dane(3) );  % do okreslenie przemieszczenia w ukladzie c4 i c6 
      parametryFunkcji(i,:) = [czlon1 czlon2 L, a, w, fi, kat];
 end
 fclose(temp);

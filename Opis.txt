@@ -20,10 +20,9 @@ ParyObrotowe.txt
 
 Wymuszenia.txt
 - liczba wymuszen
-- numery cz³onów (2 wiersze)
-- wspolrzedne koncow par postepowych
+- numery cz³onów (2 kolumny)
+- wspolrzedne koncow par postepowych (4 kolumny)
 - parametry L, a, w, fi funkcji wymuszenia
-- poczatkowy kat orientacji pary postepowej
 
 Zmienne:
 ParyObrotowe: kolejne kolumny

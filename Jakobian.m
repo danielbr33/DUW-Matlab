@@ -72,9 +72,13 @@ end
      j = dane(2);
      uj = Rot(dane(10))*[1 0]';
      vj = ParyPostepowe(m,4:5)';
-     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*uj)';
-     Fq(k+1, i) =Fq(k+1, i);  %%brak zmian bo sa i sb zerowe
+     if i~=0
+         Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*uj)';
+         Fq(k+1, i) =Fq(k+1, i);  %%brak zmian bo sa i sb zerowe
+     end
+     if j~=0
      Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(q(j))*uj)';
      Fq(k+1, j) = Fq(k+1, j) - (Rot(q(j))*uj)' *Om* (q(j-2:j-1)-q(i-2:i-1));
+     end
  end
  fclose(temp);

@@ -9,18 +9,18 @@ function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia)
     kat = parametryFunkcji(numerWymuszenia, 7);
     if rzadPochodnej == 0
         a = L + a*sin(w*t+fi);
-        x(1,1) = a*cos(kat);
-        x(2,1) = a*sin(kat);
+        x(1) = a*cos(kat);
+        x(2) = a*sin(kat);
         x = Rot(Q(czlon1*3))*x;
     elseif rzadPochodnej == 1
         a = w*a*cos(w*t+fi);
-        x(1,1) = a*cos(kat);
-        x(2,1) = a*sin(kat);
+        x(1) = a*cos(kat);
+        x(2) = a*sin(kat);
         x = Rot(Q(czlon1*3))*x;
     elseif rzadPochodnej == 2
         a = -w*w*a*sin(w*t+fi);
-        x(1,1) = a*cos(kat);
-        x(2,1) = a*sin(kat);
+        x(1) = a*cos(kat);
+        x(2) = a*sin(kat);
         x = Rot(Q(czlon1*3))*x;
     end
 end
