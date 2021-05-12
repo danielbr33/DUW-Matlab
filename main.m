@@ -2,6 +2,7 @@ DT = 0.1;
 T_MAX = 30;
 
 [Q, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
+wymuszeniaParametry = WczytajWymuszenia();
 
 DQ=zeros(length(Q),1);
 DDQ=zeros(length(Q),1);
@@ -12,10 +13,14 @@ Q_tab=zeros(length(Q),(T_MAX/DT));
 DQ_tab=zeros(length(Q),(T_MAX/DT));
 DDQ_tab=zeros(length(Q),(T_MAX/DT));
 
-for t=0:DT:T_MAX
+%for t=0:DT:T_MAX
+t=0;
     i=1;
     FI=Fi(Q, t, ParyObrotowe, ParyPostepowe);
     FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe);
+    FI_dt = Fi_dt(Q,t);
+    FIdq_dq = Fidq_dq(Q,DQ,t,ParyObrotowe, ParyPostepowe);
+    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe);
     
     Q=Q+DQ*DT+DDQ*DT*DT/2;  
     
@@ -30,4 +35,4 @@ for t=0:DT:T_MAX
     
     i=i+1;
     
-end
+%end

@@ -1,5 +1,4 @@
-function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia)
-    parametryFunkcji = WczytajWymuszenia;
+function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia, parametryFunkcji)
     czlon1 = parametryFunkcji(numerWymuszenia, 1);
     czlon2 = parametryFunkcji(numerWymuszenia, 2);
     L = parametryFunkcji(numerWymuszenia, 3);

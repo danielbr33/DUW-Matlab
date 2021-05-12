@@ -37,3 +37,9 @@ ParyPostepowe: kolejne kolumny
 - wersor prostopad³y do osi pary (2 kolumny)
 - wektor s_a (2 kolumny)
 - wektor s_b (2 kolumny)
+
+WymuszeniaParametry:
+- numery cz³onów (2 kolumny)
+- kolejno L,a,w,fi (4 kolumny)
+- poczatkowy kat obrotu pary postepowej
+- sa i sb (4 kolumny)

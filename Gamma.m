@@ -1,4 +1,4 @@
-function F = Gamma(Q,dQ)
+function F = Gamma(Q,dQ, ParyObrotowe, ParyPostepowe)
 
  temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
  ncz = str2num(fgetl(temp)); 
@@ -14,22 +14,22 @@ function F = Gamma(Q,dQ)
  fclose(temp);
  
  Om=[0 -1;1 0];
- F=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
+ F=zeros(2*(nobr+npos)+nwym,1);      %deklaracja rozm macierzy
  k=0; 
  
-%%Pary obrotowe, wzór 2.42
+%% Pary obrotowe, wzór 2.42
 for m=1:1:nobr
     i=3*ParyObrotowe(m,1);
     j=3*ParyObrotowe(m,2);
     if j==0
         kat_j = 0;
     else
-        kat_j = q(j);
+        kat_j = Q(j);
     end
     if i==0
         kat_i = 0;
     else
-        kat_i = q(i);
+        kat_i = Q(i);
     end
     s_a = ParyObrotowe(m,3:4)';
     s_b = ParyObrotowe(m,5:6)';
@@ -63,7 +63,8 @@ end
     dane = str2num(fgetl(temp));
     i=3*dane(1);
     j=3*dane(2);
-     uj = Rot(dane(10))*[1 0]';
+    kat = atan2(dane(6)-dane(4), dane(5)-dane(3));
+     uj = Rot(kat)*[1 0]';
      vj = ParyPostepowe(m,4:5)';
      F(k+1)=F(k+1) + (Rot(Q(j))*uj)'*(2*Om*(dQ(j-2:j-1)-dQ(i-2:i-1))*dQ(j)+(Q(j-2:j-1)-Q(i-2:i-1))*dQ(j)*dQ(j));
      k=k+1;

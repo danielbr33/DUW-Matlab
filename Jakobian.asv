@@ -89,11 +89,11 @@ end
      uj = Rot(kat)*[1 0]';
      vj = ParyPostepowe(m,4:5)';
      
-     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(fij)*uj)';
+     Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(fij))*uj)';
      Fq(k+1, i) =Fq(k+1, i) - (Rot(fij)*uj)'*Om*Rot(fii)*sa;  %%brak zmian bo sa i sb zerowe
 
      Fq(k+1, j-2:j-1) = Fq(k+1, j-2:j-1) + (Rot(fij)*uj)';
-     Fq(k+1, j) = Fq(k+1, j) - (Rot(fij)*uj)' *Om* (rj-ri-Rot(fii)*sa);
+     Fq(k+1, j) = Fq(k+1, j) - (Rot(fij)*uj)' *Om* (q(j-2:j-1)-q(i-2:i-1));
      
  end
  fclose(temp);

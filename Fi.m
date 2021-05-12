@@ -1,4 +1,4 @@
-function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
+function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 
  temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
  nobr = str2num(fgetl(temp));
@@ -66,12 +66,13 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe);
   number = str2num(fgetl(temp));
   for m=1:1:number
     dane = str2num(fgetl(temp));
-    i=3*dane(1);
-    j=3*dane(2);
-    kat = atan2(dane(6)-dane(4), dane(5)-dane(3));
+    i=3*WymuszeniaParametry(1);
+    j=3*WymuszeniaParametry(1);
+    kat = WymuszeniaParametry(7);
     uj = Rot(kat)*[1 0]';
-    f_AB = norm(LiczWymuszenia(Q, t, 0, m));
-    F(k+1) = F(k+1) + (Rot(Q(j))*uj)' * (Q(j-2:j-1) - Q(i-2:i-1)) - f_AB;
+    f_AB = norm(LiczWymuszenia(Q, t, 0, m, WymuszeniaParametry));
+    
+    F(k+1) = F(k+1) + (Rot(Q(j))*uj)' * (Q(j-2:j-1) +Rot(Q(j))*sb - Q(i-2:i-1) - Rot(Q(i))*sa) - f_AB;
     k = k+1;
   end
   fclose(temp);
