@@ -1,4 +1,4 @@
-function Fq = Fidq_dq(Q,dQ,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
+function Fq = FiDQ_DQ(Q,DQ,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 
  temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
  ncz = str2num(fgetl(temp)); 
@@ -29,14 +29,14 @@ for m=1:1:nobr
         katJdt = 0;
     else
         katJ = Q(j);
-        katJdt = dQ(j);
+        katJdt = DQ(j);
     end
     if i==0
         katI = 0;
         katIdt = 0;
     else
         katI = Q(i);
-        katIdt = dQ(i);
+        katIdt = DQ(i);
     end
     if i~=0
         Fq(k+1:k+2,i-2:i)=Fq(k+1:k+2,i-2:i) + [zeros(2,2) Om*Om*Rot(katI)*ParyObrotowe(m,3:4)'*katIdt];
@@ -58,7 +58,7 @@ for m=1:npos
         katJ=0;
         drj = [0 0]';
     else
-        katJdt = dQ(j);
+        katJdt = DQ(j);
         rj = Q(j-2:j-1);
         katJ = Q(j);
         drj = DQ(j-2:j-1);
@@ -69,7 +69,7 @@ for m=1:npos
         katI=0;
         dri = [0 0]';
     else
-        katIdt = dQ(i);
+        katIdt = DQ(i);
         ri = Q(i-2:i-1);
         katI=Q(i);
         dri = DQ(i-2:i-1);
@@ -79,7 +79,7 @@ for m=1:npos
     
     Fq(k+1,i-2:i)=Fq(k+1,i-2:i) + [zeros(1,2) 1];
     Fq(k+2,i-2:i-1)=Fq(k+2,i-2:i-1) + (Rot(katJ)*vj)'*Om*katJdt;
-    Fq(k+2,i) = Fq(k+2,i) + (Rot(katJ)*vj)'*Rot(kati)*sa*(katIdt-katJdt);
+    Fq(k+2,i) = Fq(k+2,i) + (Rot(katJ)*vj)'*Rot(katI)*sa*(katIdt-katJdt);
 
     Fq(k+1,j-2:j)=Fq(k+1,j-2:j) + [zeros(1,2) -1];
     Fq(k+2,j-2:j-1)=Fq(k+2,j-2:j-1) - (Rot(katJ)*vj)'*Om*katJdt;
@@ -104,7 +104,7 @@ end
         fiJ=0;
         drj = [0 0]';
     else
-        fiJdt = dQ(j);
+        fiJdt = DQ(j);
         rj = Q(j-2:j-1);
         fiJ = Q(j);
         drj = DQ(j-2:j-1);
@@ -115,22 +115,25 @@ end
         fiI=0;
         dri = [0 0]';
     else
-        fiIdt = dQ(i);
+        fiIdt = DQ(i);
         ri = Q(i-2:i-1);
         fiI=Q(i);
         dri = DQ(i-2:i-1);
     end
-    sa = WymuszeniaParametry(8:9);
-    sb = WymuszeniaParametry(10:11);
+    sa = WymuszeniaParametry(m, 8:9)';
+    sb = WymuszeniaParametry(m, 10:11)';
     
-    kat = WymuszeniaParametry(7);
+    kat = WymuszeniaParametry(m, 7);
      uj = Rot(kat)*[1 0]';
 
-    Fq(k+2,i-2:i-1)=Fq(k+2,i-2:i-1) + (Rot(fiJ)*uj)'*Om*fiJdt;
-    Fq(k+2,i) = Fq(k+2,i) + (Rot(fiJ)*uj)'*Rot(fiI)*sa*(fiIdt-fiJdt);
-    Fq(k+2,j-2:j-1)=Fq(k+2,j-2:j-1) - (Rot(fiJ)*uj)'*Om*fiJdt;
-    Fq(k+2,j) = Fq(k+2,j) + (-dri-Om*Rot(fiI)*sa*fiIdt+drj-Om*(rj-ri-Rot(fiI)*sa)*fiJdt)' *Om*Rot(katJ)*uj;
- 
+     if i~=0
+        Fq(k+1,i-2:i-1)=Fq(k+1,i-2:i-1) + (Rot(fiJ)*uj)'*Om*fiJdt;
+        Fq(k+1,i) = Fq(k+1,i) + (Rot(fiJ)*uj)'*Rot(fiI)*sa*(fiIdt-fiJdt);
+     end
+     if j~=0
+        Fq(k+1,j-2:j-1)=Fq(k+1,j-2:j-1) - (Rot(fiJ)*uj)'*Om*fiJdt;
+        Fq(k+1,j) = Fq(k+1,j) + (-dri-Om*Rot(fiI)*sa*fiIdt+drj-Om*(rj-ri-Rot(fiI)*sa)*fiJdt)' *Om*Rot(katJ)*uj;
+     end
      k = k+1;
  end
  fclose(temp);

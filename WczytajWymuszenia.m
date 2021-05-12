@@ -24,6 +24,7 @@ for i=1:number
      uklad2 = UkladyWspolrzednych(i,1:2)';
      sa = punktA - uklad1;
      sb = punktB - uklad2;
+     sa = sa'; sb =sb';
      
      kat = atan2(dane(6)-dane(4), dane(5)-dane(3));  % do okreslenie przemieszczenia w ukladzie c4 i c6 
      parametryFunkcji(i,:) = [czlon1 czlon2 L, a, w, fi, kat, sa, sb];

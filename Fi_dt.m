@@ -1,4 +1,4 @@
-function F=Fi_dt(Q,t);
+function F=Fi_dt(Q,t, parametryFunkcji);
 
  temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
  nobr = str2num(fgetl(temp));
@@ -18,7 +18,7 @@ function F=Fi_dt(Q,t);
      k=k+2;
  end
  for m=1:nwym
-     F(k+1) = norm(LiczWymuszenia(Q, t, 1, m));
+     F(k+1) = norm(LiczWymuszenia(Q, t, 1, m, parametryFunkcji));
      k=k+1;
  end
  

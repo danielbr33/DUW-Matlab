@@ -1,4 +1,4 @@
-function F = Gamma(Q,dQ, ParyObrotowe, ParyPostepowe)
+function F = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
 
  temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
  ncz = str2num(fgetl(temp)); 
@@ -34,11 +34,11 @@ for m=1:1:nobr
     s_a = ParyObrotowe(m,3:4)';
     s_b = ParyObrotowe(m,5:6)';
     if i==0
-        F(k+1:k+2)=F(k+1:k+2) - Rot(Q(j))*s_b*dQ(j)*dQ(j);
+        F(k+1:k+2)=F(k+1:k+2) - Rot(Q(j))*s_b*DQ(j)*DQ(j);
     elseif j==0
-        F(k+1:k+2)=F(k+1:k+2) + Rot(Q(i))*s_a*dQ(i)*dQ(i);
+        F(k+1:k+2)=F(k+1:k+2) + Rot(Q(i))*s_a*DQ(i)*DQ(i);
     else
-        F(k+1:k+2)=F(k+1:k+2) + Rot(Q(i))*s_a*dQ(i)*dQ(i) - Rot(Q(j))*s_b*dQ(j)*dQ(j);
+        F(k+1:k+2)=F(k+1:k+2) + Rot(Q(i))*s_a*DQ(i)*DQ(i) - Rot(Q(j))*s_b*DQ(j)*DQ(j);
     end
     k=k+2;
 end
@@ -57,8 +57,8 @@ end
         dri=[0 0]';
         dfii=0;
     else
-        ri=q(i-2:i-1);
-        fii=q(i);
+        ri=Q(i-2:i-1);
+        fii=Q(i);
         dri=DQ(i-2:i-1);
         dfii=DQ(i);
     end
@@ -68,13 +68,13 @@ end
         drj=[0 0]';
         dfij=0;
     else
-        rj=q(j-2:j-1);
-        fij=q(j);
-        drj=DQ(j-2:i-j);
+        rj=Q(j-2:j-1);
+        fij=Q(j);
+        drj=DQ(j-2:j-1);
         dfij=DQ(j);
     end
      F(k+1) = F(k+1);
-     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*v*dfij;
+     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*s_a)*dfij)'*Om*Rot(fij)*vj*dfij;
     k=k+2;
  end
  
@@ -91,8 +91,8 @@ end
         dri=[0 0]';
         dfii=0;
     else
-        ri=q(i-2:i-1);
-        fii=q(i);
+        ri=Q(i-2:i-1);
+        fii=Q(i);
         dri=DQ(i-2:i-1);
         dfii=DQ(i);
     end
@@ -102,14 +102,15 @@ end
         drj=[0 0]';
         dfij=0;
     else
-        rj=q(j-2:j-1);
-        fij=q(j);
-        drj=DQ(j-2:i-j);
+        rj=Q(j-2:j-1);
+        fij=Q(j);
+        drj=DQ(j-2:j-1);
         dfij=DQ(j);
     end
-    sa = WymuszeniaParametry(8:9);
-    sb = WymuszeniaParametry(10:11);
-     kat = WymuszeniaParametry(7);
-     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
+    sa = WymuszeniaParametry(m, 8:9)';
+    sb = WymuszeniaParametry(m, 10:11)';
+    kat = WymuszeniaParametry(m, 7);
+     uj = Rot(kat)*[1 0]';
+     F(k+1) = F(k+1) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
      k=k+1;
  end

@@ -82,11 +82,10 @@ end
         rj=q(j-2:j-1);
         fij=q(j);
     end
-    sa = WymuszeniaParametry(8:9);
-    sb = WymuszeniaParametry(10:11);
-     kat = WymuszeniaParametry(7);
+    sa = WymuszeniaParametry(m, 8:9)';
+    sb = WymuszeniaParametry(m, 10:11)';
+     kat = WymuszeniaParametry(m, 7);
      uj = Rot(kat)*[1 0]';
-     vj = ParyPostepowe(m,4:5)';
      
      Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(fij)*uj)';
      Fq(k+1, i) =Fq(k+1, i) - (Rot(fij)*uj)'*Om*Rot(fii)*sa;  %%brak zmian bo sa i sb zerowe

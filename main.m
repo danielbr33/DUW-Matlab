@@ -16,11 +16,11 @@ DDQ_tab=zeros(length(Q),(T_MAX/DT));
 %for t=0:DT:T_MAX
 t=0;
     i=1;
-    FI=Fi(Q, t, ParyObrotowe, ParyPostepowe);
-    FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe);
-    FI_dt = Fi_dt(Q,t);
-    FIdq_dq = Fidq_dq(Q,DQ,t,ParyObrotowe, ParyPostepowe);
-    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe);
+    FI=Fi(Q, t, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
+    FIdq_dq = Fidq_dq(Q,DQ,t,ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     
     Q=Q+DQ*DT+DDQ*DT*DT/2;  
     
