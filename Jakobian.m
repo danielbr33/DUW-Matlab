@@ -84,7 +84,6 @@ end
     end
     sa = WymuszeniaParametry(8:9);
     sb = WymuszeniaParametry(10:11);
-    
      kat = WymuszeniaParametry(7);
      uj = Rot(kat)*[1 0]';
      vj = ParyPostepowe(m,4:5)';

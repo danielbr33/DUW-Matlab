@@ -126,11 +126,12 @@ end
     kat = WymuszeniaParametry(7);
      uj = Rot(kat)*[1 0]';
 
-    Fq(k+2,i-2:i-1)=Fq(k+2,i-2:i-1) + (Rot(fiJ)*uj)'*Om*fiJdt;
-    Fq(k+2,i) = Fq(k+2,i) + (Rot(fiJ)*uj)'*Rot(fiI)*sa*(fiIdt-fiJdt);
-    Fq(k+2,j-2:j-1)=Fq(k+2,j-2:j-1) - (Rot(fiJ)*uj)'*Om*fiJdt;
-    Fq(k+2,j) = Fq(k+2,j) + (-dri-Om*Rot(fiI)*sa*fiIdt+drj-Om*(rj-ri-Rot(fiI)*sa)*fiJdt)' *Om*Rot(katJ)*uj;
- 
+     Fq(k+1,i-2:i-1)=Fq(k+1,i-2:i-1) + (Rot(katJ)*uj)'*Om*katJdt;
+     Fq(k+1,i) = Fq(k+1,i) + 0;
+
+     Fq(k+1,j-2:j-1)=Fq(k+1,j-2:j-1) - (Rot(katJ)*uj)'*Om*katJdt;
+     Fq(k+1,j) = Fq(k+1,j) + (dQ(j-2:j-1)-dQ(i-2:i-1)+Om*Q(i-2:i-1)*katJdt-Om*Q(j-2:j-1)*katJdt)'*Om*Rot(katJ)*uj;
+
      k = k+1;
  end
  fclose(temp);

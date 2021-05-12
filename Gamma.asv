@@ -54,28 +54,20 @@ end
     if i==0
         ri=[0 0]';
         fii=0;
-        dri=[0 0]';
-        dfii=0;
     else
         ri=q(i-2:i-1);
         fii=q(i);
-        dri=DQ(i-2:i-1);
-        dfii=DQ(i);
     end
     if j==0
         rj=[0 0]';
         fij=0;
-        drj=[0 0]';
-        dfij=0;
     else
         rj=q(j-2:j-1);
         fij=q(j);
-        drj=DQ(j-2:i-j);
-        dfij=DQ(j);
     end
      F(k+1) = F(k+1);
-     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*v*dfij;
-    k=k+2;
+     F(k+2) = F(k+2) + F(k+1) + (Rot(Q(j))*vj)'*(2*Om*(dQ(j-2:j-1)-dQ(i-2:i-1))*dQ(j)+(Q(j-2:j-1)-Q(i-2:i-1))*dQ(j)*dQ(j));
+     k=k+2;
  end
  
 %% Wymuszenia, wzór 2.59, opis na stronie 52
@@ -85,31 +77,9 @@ end
     dane = str2num(fgetl(temp));
     i=3*dane(1);
     j=3*dane(2);
-    if i==0
-        ri=[0 0]';
-        fii=0;
-        dri=[0 0]';
-        dfii=0;
-    else
-        ri=q(i-2:i-1);
-        fii=q(i);
-        dri=DQ(i-2:i-1);
-        dfii=DQ(i);
-    end
-    if j==0
-        rj=[0 0]';
-        fij=0;
-        drj=[0 0]';
-        dfij=0;
-    else
-        rj=q(j-2:j-1);
-        fij=q(j);
-        drj=DQ(j-2:i-j);
-        dfij=DQ(j);
-    end
-    sa = WymuszeniaParametry(8:9);
-    sb = WymuszeniaParametry(10:11);
-     kat = WymuszeniaParametry(7);
-     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
+    kat = atan2(dane(6)-dane(4), dane(5)-dane(3));
+     uj = Rot(kat)*[1 0]';
+     vj = ParyPostepowe(m,4:5)';
+     F(k+1)=F(k+1) + (Rot(Q(j))*uj)'*(2*Om*(dQ(j-2:j-1)-dQ(i-2:i-1))*dQ(j)+(Q(j-2:j-1)-Q(i-2:i-1))*dQ(j)*dQ(j));
      k=k+1;
  end
