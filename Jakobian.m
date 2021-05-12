@@ -70,7 +70,8 @@ end
      dane = str2num(fgetl(temp));
      i = dane(1);
      j = dane(2);
-     uj = Rot(dane(10))*[1 0]';
+     kat = atan2(dane(6)-dane(4), dane(5)-dane(3));
+     uj = Rot(kat)*[1 0]';
      vj = ParyPostepowe(m,4:5)';
      if i~=0
          Fq(k+1, i-2:i-1) = Fq(k+1, i-2:i-1) - (Rot(q(j))*uj)';
