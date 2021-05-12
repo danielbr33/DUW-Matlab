@@ -1,0 +1,40 @@
+Pliki tekstowe z danymi:
+
+UkladyWspolrzednych.txt
+- wspolrzedna X
+- wspolrzedna Y
+- kat rotacji (przyjete zerowe)
+
+ParyPostepowe.txt;
+- liczba par postepowych;
+- indeks pierwszego czlonu
+- indeks drugiego czlonu
+- wspolrzedne X i Y jednego konca
+- wspolrzedne X i Y drugiego konca
+
+ParyObrotowe.txt
+- liczba par obrotowych
+- indeks pierwszego czlonu
+- indeks drugiego czlonu
+- wspolrzedne osi obrotu
+
+Wymuszenia.txt
+- liczba wymuszen
+- numery cz³onów (2 wiersze)
+- wspolrzedne koncow par postepowych
+- parametry L, a, w, fi funkcji wymuszenia
+- poczatkowy kat orientacji pary postepowej
+
+Zmienne:
+ParyObrotowe: kolejne kolumny
+- indeks pierwszego czlonu
+- indeks drugiego czlonu
+- s_a (dwie kolumny)
+- s_b (dwie kolumny)
+
+ParyPostepowe: kolejne kolumny
+- indeksy 1 i 2 czlonu (2 kolumny)
+- k¹t fi0
+- wersor prostopad³y do osi pary (2 kolumny)
+- wektor s_a (2 kolumny)
+- wektor s_b (2 kolumny)
