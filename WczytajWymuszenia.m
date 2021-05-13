@@ -20,10 +20,10 @@ for i=1:number
      [Q, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
      punktA = [dane(3)  dane(4)]';
      punktB = [dane(5)  dane(6)]';
-     uklad1 = UkladyWspolrzednych(i,1:2)';
-     uklad2 = UkladyWspolrzednych(i,1:2)';
-     sa = punktA - uklad1;
+     uklad1 = UkladyWspolrzednych(czlon1,1:2)';
+     uklad2 = UkladyWspolrzednych(czlon2,1:2)';
      sb = punktB - uklad2;
+     sa = punktA - uklad1;
      sa = sa'; sb =sb';
      
      kat = atan2(dane(6)-dane(4), dane(5)-dane(3));  % do okreslenie przemieszczenia w ukladzie c4 i c6 

@@ -24,7 +24,7 @@ t=0;
     
     Q=Q+DQ*DT+DDQ*DT*DT/2;  
     
-    Q=NewRaph(Q,t,FI, FIq);
+    Q=NewRaph(Q,t,ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
    % DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
    % DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma);
     
