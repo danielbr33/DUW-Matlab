@@ -48,7 +48,6 @@ D2Q=zeros(size(t,2),3*(length(czlon)-1));
 while iter<=size(t,2)
    
     % Metoda Newtona Raphsona
-    
     czlon=NewRaph(czlon,Dane_PO,Dane_PP,Dane_PPD,t(iter));
     q=Readq(czlon);
     

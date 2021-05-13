@@ -51,11 +51,11 @@ for m=1:npos
     
     if i~=0
         Fq(k+1,i-2:i)=Fq(k+1,i-2:i) + [zeros(1,2) 1];
-        Fq(k+2,i-2:i)=Fq(k+2,i-2:i) + [-(Rot(q(j))*vj)'  -(Rot(q(j))*vj)'*Om*Rot(q(i))*ParyPostepowe(m,6:7)']; 
+        Fq(k+2,i-2:i)=Fq(k+2,i-2:i) + [-(Rot(q(j))*vj)'  -(Rot(q(j))*vj)'*Om*Rot(q(i))*ParyPostepowe(m,3:4)']; 
     end
     if j~=0
         Fq(k+1,j-2:j)=Fq(k+1,j-2:j) + [zeros(1,2) -1];
-        Fq(k+2,j-2:j)=Fq(k+2,j-2:j) + [(Rot(q(j))*vj)' -(Rot(q(j))*vj)'*Om*(q(j-2:j-1)-q(i-2:i-1)-Rot(q(i))*ParyPostepowe(m,6:7)')];
+        Fq(k+2,j-2:j)=Fq(k+2,j-2:j) + [(Rot(q(j))*vj)' -(Rot(q(j))*vj)'*Om*(q(j-2:j-1)-q(i-2:i-1)-Rot(q(i))*ParyPostepowe(m,3:4)')];
     end
     k=k+2;
 end
