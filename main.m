@@ -19,13 +19,17 @@ t=0;
     FI=Fi(Q, t, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
-    FIdq_dq = Fidq_dq(Q,DQ,t,ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
-    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     
     Q=Q+DQ*DT+DDQ*DT*DT/2;  
-    
     Q=NewRaph(Q,t,ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
-   % DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
+   
+    FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
+    DQ = -FIq \ FI_dt;
+    
+    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    DDQ = FIq\GAMMA;
+    % DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
    % DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma);
     
    % T(i)=t;
