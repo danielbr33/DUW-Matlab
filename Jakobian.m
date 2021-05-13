@@ -66,8 +66,8 @@ end
  Om=[0 -1;1 0];
  for m=1:1:liczba
      dane = str2num(fgetl(temp));
-     i = dane(1);
-     j = dane(2);
+    i=3*ParyPostepowe(m,1);
+    j=3*ParyPostepowe(m,2);
     if i==0
         ri=[0 0]';
         fii=0;
