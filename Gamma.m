@@ -1,4 +1,4 @@
-function F = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
+function F = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t)
 
  temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
  ncz = str2num(fgetl(temp)); 
@@ -17,7 +17,7 @@ function F = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
  F=zeros(2*(nobr+npos)+nwym,1);      %deklaracja rozm macierzy
  k=0; 
  
-%% Pary obrotowe, wzór 2.42
+%% Pary obrotowe, wzór 2.40
 for m=1:1:nobr
     i=3*ParyObrotowe(m,1);
     j=3*ParyObrotowe(m,2);
@@ -51,6 +51,9 @@ end
      s_b = ParyPostepowe(m,8:9)';
      s_a = ParyPostepowe(m,6:7)';
      vj = ParyPostepowe(m,4:5)';
+     %uj = ParyPostepowe(m,4:5)';
+     %vj=[-uj(2); uj(1)]
+     
     if i==0
         ri=[0 0]';
         fii=0;
@@ -74,7 +77,11 @@ end
         dfij=DQ(j);
     end
      F(k+1) = F(k+1);
-     F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*s_a)*dfij)'*Om*Rot(fij)*vj*dfij;
+     %wzor 2.55
+     %F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*s_a)*dfij)'*Om*Rot(fij)*vj*dfij;
+    
+     %wzor 2.57
+     F(k+2)=F(k+2)-(Rot(fij)*vj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2);
     k=k+2;
  end
  
@@ -110,7 +117,11 @@ end
     sa = WymuszeniaParametry(m, 8:9)';
     sb = WymuszeniaParametry(m, 10:11)';
     kat = WymuszeniaParametry(m, 7);
-     uj = Rot(kat)*[1 0]';
-     F(k+1) = F(k+1) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
-     k=k+1;
+    uj = Rot(kat)*[1 0]'
+     %uj = ParyPostepowe(WymuszeniaParametry(m,1),4:5)';
+     
+    f_AB = LiczWymuszenia(Q, t, 2, m, WymuszeniaParametry);
+    %F(k+1) = F(k+1) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
+    F(k+1)=F(k+1)-(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
+    k=k+1;
  end
