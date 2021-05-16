@@ -12,7 +12,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
  nwym = str2num(fgetl(temp));
  fclose(temp);
  
- k=0;                         %licznik równań więzów
+ k=0;                         %licznik rĂłwnaĹ„ wiÄ™zĂłw
  F=zeros(2*(nobr+npos)+nwym,1);    %deklaracja rozmiaru wektora
     
  %% na podstawie wzoru 2.18
@@ -31,7 +31,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
         k=k+2;
  end
  
- %% Na podstawie wzor�w 2.19 i 2.22
+ %% Na podstawie wzorów 2.19 i 2.22
  for m=1:npos
      i=3*ParyPostepowe(m,1);
      j=3*ParyPostepowe(m,2);
@@ -40,14 +40,14 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
      s_a = ParyPostepowe(m,6:7)';
      vj = ParyPostepowe(m,4:5)';
      if j==0
-         rj == [0 0]';
+         rj = [0 0]';
          kat_j = 0;
      else
          rj = Q(j-2:j-1);
          kat_j = Q(j);
      end
      if i==0
-         ri == [0 0]';
+         ri = [0 0]';
          kat_i = 0;
      else
          ri = Q(i-2:i-1);
@@ -60,7 +60,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
      k=k+2;
  end
  
-  %% Wiezy dynamiczne na podstawie wzor�w 2.28
+  %% Wiezy dynamiczne na podstawie wzorów 2.28
   %Punkty A i B w srodkach czlonow, wiec sa i sb zerowe
   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
   number = str2num(fgetl(temp));
@@ -72,7 +72,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
     sa = WymuszeniaParametry(m,8:9)';
     sb = WymuszeniaParametry(m,10:11)';
     uj = Rot(kat)*[1 0]';
-    f_AB = norm(LiczWymuszenia(Q, t, 0, m, WymuszeniaParametry));
+    f_AB = LiczWymuszenia(Q, t, 0, m, WymuszeniaParametry);
     
     F(k+1) = F(k+1) + (Rot(Q(j))*uj)' * (Q(j-2:j-1) + Rot(Q(j))*sb - Q(i-2:i-1) - Rot(Q(i))*sa) - f_AB;
     k = k+1;
