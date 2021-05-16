@@ -1,0 +1,55 @@
+1. Wypełnić pliki z danymi według schematu:
+
+   	czlony.txt:
+		pierwszy wiersz: liczba członów (bez podstawy)
+		kolejne wiersze: współrzędna x   współrzedna y   kąt fi  (współrzędne środków mas dla kolejnych członów w układzie globalnym)
+	
+	Pary.txt:
+		pierwszy wiersz- Liczba par obrotowych
+
+		kolejne wiersze: Numer pierwszego członu 
+				 Numer Drugiego członu 
+				 Współrzędna X  pary obrotowej
+				 Współrzędna Y pary obrotowej
+
+		(gdy wypiszemy wszystkie pary obrotowe przechodzimy do par postępowych):
+
+		Następny wiersz: Liczba par postępowych
+		
+		kolejne wiersze: Numer pierwszego członu 
+				 Numer Drugiego czlonu 
+				 Współrzędna X przyłożenia pary do pierwszego członu 
+				 Współrzędna Y przyłożenia pary do pierwszego członu 		
+				 Współrzędna X przyłożenia pary do drugiego członu
+				 Współrzędna Y przyłożenia pary do drugiego członu
+
+	Wymuszenia.txt:
+			Ilość par obrotowych
+		
+			Numer pary obrotowej 	Numer funkcji odpowiadającej danej parze
+		
+			Ilość par postępowych
+
+			Numer pary postępowej 	Numer funkcji odpowiadającej danej parze
+
+
+
+2. W pliku WymuszenieP.m wpisać współczynniki równań napędów liniowych
+ 		 - trzeba uważać z maksymalnym wysunięciem - przy zbyt dużych wartościach psuje się
+  		 - przy większych szybkościach zmiany wysunięcia należy zmienić dt
+
+3. Zmiana dt oraz Tmax w programie start.m oraz uruchomienie go w celu uzyskania wyników
+Q-macierz przemieszczeń
+DQ-macierz prędkości
+DDQ- macierz przyspieszeń
+
+4. W celu wykonania wykresów dla konkretnego członu (konkretnie dla środka jego masy) możemy wykonać za pomocą:
+
+plot(T,Q(n,:))
+
+ czlon a
+ a(x) -> n=3*a-2
+ a(y) -> n=3*a-1
+ a(fi) -> n=3*a
+
+
