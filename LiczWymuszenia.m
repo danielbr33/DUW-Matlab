@@ -1,4 +1,4 @@
-function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia, parametryFunkcji)
+function a = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia, parametryFunkcji)
     czlon1 = parametryFunkcji(numerWymuszenia, 1);
     czlon2 = parametryFunkcji(numerWymuszenia, 2);
     L = parametryFunkcji(numerWymuszenia, 3);
@@ -8,15 +8,15 @@ function [x] = LiczWymuszenia(Q, t, rzadPochodnej, numerWymuszenia, parametryFun
     kat = parametryFunkcji(numerWymuszenia, 7);
     if rzadPochodnej == 0
         a = L + a*sin(w*t+fi);
-        x(1) = a*cos(kat);
-        x(2) = a*sin(kat);
+        %x(1) = a*cos(kat);
+        %x(2) = a*sin(kat);
     elseif rzadPochodnej == 1
         a = w*a*cos(w*t+fi);
-        x(1) = a*cos(kat);
-        x(2) = a*sin(kat);
+        %x(1) = a*cos(kat);
+        %x(2) = a*sin(kat);
     elseif rzadPochodnej == 2
         a = -w*w*a*sin(w*t+fi);
-        x(1) = a*cos(kat);
-        x(2) = a*sin(kat);
+        %x(1) = a*cos(kat);
+        %x(2) = a*sin(kat);
     end
 end
