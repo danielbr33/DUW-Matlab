@@ -81,7 +81,7 @@ end
      %F(k+2) = F(k+2) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*s_a)*dfij)'*Om*Rot(fij)*vj*dfij;
     
      %wzor 2.57
-     F(k+2)=F(k+2)-(Rot(fij)*vj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2);
+     F(k+2)=F(k+2)+(Rot(fij)*vj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2);
     k=k+2;
  end
  
@@ -122,6 +122,6 @@ end
      
     f_AB = LiczWymuszenia(Q, t, 2, m, WymuszeniaParametry);
     %F(k+1) = F(k+1) - (-dri-Om*Rot(fii)*s_a*dfii+drj-Om*(rj-ri-Rot(fii)*sa)*dfij)'*Om*Rot(fij)*uj*dfij;
-    F(k+1)=F(k+1)-(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
+    F(k+1)=F(k+1)+(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
     k=k+1;
  end
