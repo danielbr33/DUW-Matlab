@@ -20,7 +20,7 @@ function Fq = FiDQ_DQ(Q,DQ,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
  Fq=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
  k=0;     
  
- %% Obliczenie czesci dla par obrotowych 4.36-4.39
+ %% Obliczenie czesci dla par obrotowych 2.36-2.39
 for m=1:1:nobr
     i=3*ParyObrotowe(m,1);
     j=3*ParyObrotowe(m,2);
@@ -91,6 +91,7 @@ end
 %% Obliczenie czesci dla par dynamicznych
 %wedlug opisu na stronie 52 to samo co dla par 
 %postepowych tylko uj zamiast vj
+
  temp = fopen('DanePliki/Wymuszenia.txt', 'r');
  liczba = str2num(fgetl(temp));
  Om=[0 -1;1 0];

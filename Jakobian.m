@@ -18,7 +18,7 @@ function Fq=Jakobian(q, ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
 
 Om=[0 -1;1 0];
 Fq=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
-k=0;                                %licznik rÃ³wnaÃ± wiÃªzÃ³w
+k=0;                                %licznik równañ wiêzów
 
 %% Obliczenie czesci Jakobianu dla par obrotowych 4.31-4.34
 for m=1:1:nobr
@@ -43,7 +43,7 @@ for m=1:1:nobr
     k=k+2;
 end
 
-%% Obliczenie czesci jakobiany dla par postepowych 2.43-2.46 oraz 2.49-2.52
+%% Obliczenie czesci jakobianu dla par postepowych 2.43-2.46 oraz 2.49-2.52
 for m=1:npos
     i=3*ParyPostepowe(m,1);
     j=3*ParyPostepowe(m,2);
@@ -60,7 +60,7 @@ for m=1:npos
     k=k+2;
 end
 
-%% Obliczenie czesci jakobiany dla par dynamicznych 2.49-2.52
+%% Obliczenie czesci jakobianu dla par dynamicznych 2.49-2.52
  temp = fopen('DanePliki/Wymuszenia.txt', 'r');
  liczba = str2num(fgetl(temp));
  Om=[0 -1;1 0];

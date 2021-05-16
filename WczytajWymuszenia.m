@@ -1,4 +1,5 @@
 function [parametryFunkcji] = WczytajWymuszenia()
+%w tej funkcji wczytujemy dane z pliku - poznajemy parametry L, a, omega oraz fi
 temp = fopen('DanePliki/Wymuszenia.txt', 'r');
 number = str2num(fgetl(temp));
 for i=1:number
@@ -7,13 +8,7 @@ for i=1:number
      czlon2 = dane(2);
      L = (dane(3)-dane(5))^2+(dane(4)-dane(6))^2;
      L = sqrt(L);
-     %L=L/2;
-     %if i==1
-     %    L = 0.447;
-     %end
-     %if i==2
-     %    L = 0.632;
-     %end
+     
      a = dane(7);
      w = dane(8);
      fi = dane(9);

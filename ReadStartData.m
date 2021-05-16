@@ -7,6 +7,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
     end
     fclose(temp);
 
+    %wczytywanie z pliku informacji o parach obrotowych
     temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
     number = str2num(fgetl(temp));
     for i=1:number
@@ -36,6 +37,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
     end 
     fclose(temp);
     
+    %wczytywanie z pliku informacji o parach postepowych
     temp = fopen('DanePliki/ParyPostepowe.txt', 'r');
     number = str2num(fgetl(temp));
     for i=1:number
@@ -61,6 +63,8 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
         end
         R1 = Rot(fi1);
         R2 = Rot(fi2);
+        
+        %obliczanie wektora v
         v = punktA - punktB;
         v = v/norm(v);
         v = v*Rot(pi/2);
@@ -71,6 +75,7 @@ function [q, CoordinateSystem, RevoluteJoint, PrismaticJoint] = ReadStartData()
     end
     fclose(temp);
     
+    %wczytywanie z pliku informacji o srodkach masy czlonow
     temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
     number = str2num(fgetl(temp));
     q = zeros(number*3,1);

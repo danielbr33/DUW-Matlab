@@ -12,14 +12,13 @@ function F=Fi_dt(Q,t, parametryFunkcji);
  nwym = str2num(fgetl(temp));
  fclose(temp);
  
- k=0;                         %licznik równań więzów
- F=zeros(2*(nobr+npos)+nwym,1);    %deklaracja rozmiaru wektora
+ k=0;                               %licznik równań więzów
+ F=zeros(2*(nobr+npos)+nwym,1);     %deklaracja rozmiaru wektora
  for m=1:(nobr+npos)
      k=k+2;
  end
  for m=1:nwym
-     %F(k+1) = norm(LiczWymuszenia(Q, t, 1, m, parametryFunkcji));
-     F(k+1) = -LiczWymuszenia(Q, t, 1, m, parametryFunkcji);    %2.58
+     F(k+1) = -LiczWymuszenia(Q, t, 1, m, parametryFunkcji);    %wzór 2.60
      k=k+1;
  end
  

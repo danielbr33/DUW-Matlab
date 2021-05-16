@@ -1,4 +1,5 @@
 function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
+%funkcja zapisujaca rownania wiezow
 
  temp = fopen('DanePliki/ParyObrotowe.txt', 'r');
  nobr = str2num(fgetl(temp));
@@ -12,10 +13,10 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
  nwym = str2num(fgetl(temp));
  fclose(temp);
  
- k=0;                         %licznik rĂłwnaĹ„ wiÄ™zĂłw
- F=zeros(2*(nobr+npos)+nwym,1);    %deklaracja rozmiaru wektora
+ k=0;                               %licznik rownan wiezow
+ F=zeros(2*(nobr+npos)+nwym,1);     %deklaracja rozmiaru wektora
     
- %% na podstawie wzoru 2.18
+ %% na podstawie wzoru 2.18 - pary obrotowe
  for m=1:nobr
         i=3*ParyObrotowe(m,1);
         j=3*ParyObrotowe(m,2);
@@ -31,7 +32,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
         k=k+2;
  end
  
- %% Na podstawie wzorów 2.19 i 2.22
+ %% Na podstawie wzor�w 2.19 i 2.22 - pary postepowe
  for m=1:npos
      i=3*ParyPostepowe(m,1);
      j=3*ParyPostepowe(m,2);
@@ -60,7 +61,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
      k=k+2;
  end
  
-  %% Wiezy dynamiczne na podstawie wzorów 2.28
+  %% Wiezy dynamiczne na podstawie wzor�w 2.28
   %Punkty A i B w srodkach czlonow, wiec sa i sb zerowe
   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
   number = str2num(fgetl(temp));
