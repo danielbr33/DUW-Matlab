@@ -18,7 +18,8 @@ function F=Fi_dt(Q,t, parametryFunkcji);
      k=k+2;
  end
  for m=1:nwym
-     F(k+1) = norm(LiczWymuszenia(Q, t, 1, m, parametryFunkcji));
+     %F(k+1) = norm(LiczWymuszenia(Q, t, 1, m, parametryFunkcji));
+     F(k+1) = -LiczWymuszenia(Q, t, 1, m, parametryFunkcji);    %2.58
      k=k+1;
  end
  
