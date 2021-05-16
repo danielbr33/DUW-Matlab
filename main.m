@@ -39,4 +39,4 @@ for t=0:DT:T_MAX
     i=i+1;
     
 end
-plot(T,DDQ_tab(29,:))
+plot(T,DDQ_tab(28,:))

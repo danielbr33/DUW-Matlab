@@ -117,7 +117,7 @@ end
     sa = WymuszeniaParametry(m, 8:9)';
     sb = WymuszeniaParametry(m, 10:11)';
     kat = WymuszeniaParametry(m, 7);
-    uj = Rot(kat)*[1 0]'
+    uj = Rot(kat)*[1 0]';
      %uj = ParyPostepowe(WymuszeniaParametry(m,1),4:5)';
      
     f_AB = LiczWymuszenia(Q, t, 2, m, WymuszeniaParametry);
