@@ -27,7 +27,7 @@ t=0;
     FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
     DQ = -FIq \ FI_dt;
     
-    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
+    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry, t);
     DDQ = FIq\GAMMA;
     % DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
    % DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma);
