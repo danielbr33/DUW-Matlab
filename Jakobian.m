@@ -18,7 +18,7 @@ function Fq=Jakobian(q, ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
 
 Om=[0 -1;1 0];
 Fq=zeros(2*(nobr+npos)+nwym,3*ncz);      %deklaracja rozm macierzy
-k=0;                                %licznik równañ wiêzów
+k=0;                                %licznik rÃ³wnaÃ± wiÃªzÃ³w
 
 %% Obliczenie czesci Jakobianu dla par obrotowych 4.31-4.34
 for m=1:1:nobr
@@ -94,5 +94,8 @@ end
      Fq(k+1, j) = Fq(k+1, j) - (Rot(fij)*uj)' *Om* (rj-ri-Rot(fii)*sa);
      k=k+1;
      
+ end
+ if(det(Fq)==0)
+        disp('Jakobian jest osobliwy');
  end
  fclose(temp);
