@@ -13,7 +13,7 @@ Q_tab=zeros(length(Q),(T_MAX/DT));
 DQ_tab=zeros(length(Q),(T_MAX/DT));
 DDQ_tab=zeros(length(Q),(T_MAX/DT));
 
-%for t=0:DT:T_MAX
+for t=0:DT:T_MAX
 t=0;
     i=1;
     FI=Fi(Q, t, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
@@ -39,4 +39,4 @@ t=0;
     
     i=i+1;
     
-%end
+end
