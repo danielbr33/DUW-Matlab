@@ -13,9 +13,10 @@ Q_tab=zeros(length(Q),(T_MAX/DT));
 DQ_tab=zeros(length(Q),(T_MAX/DT));
 DDQ_tab=zeros(length(Q),(T_MAX/DT));
 
+i=1;
+
 for t=0:DT:T_MAX
-t=0;
-    i=1;
+
     FI=Fi(Q, t, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     FIq = Jakobian(Q, ParyObrotowe, ParyPostepowe, wymuszeniaParametry);
     FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
@@ -27,16 +28,15 @@ t=0;
     FI_dt = Fi_dt(Q,t, wymuszeniaParametry);
     DQ = -FIq \ FI_dt;
     
-    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry, t);
+    GAMMA = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, wymuszeniaParametry,t);
     DDQ = FIq\GAMMA;
-    % DQ=Predkosci(Q, ParyObrotowe, ParyPostepowe,t, Fi_dt);
-   % DDQ=Przyspieszenia(DQ,Q,ParyObrotowe,ParyPostepowe,t,Gamma);
     
-   % T(i)=t;
-   % Q_tab(i)=Q1;
-   % DQ_tab(i)=DQ1;
-   % DDQ_tab(i)=DDQ1;
+    T(1,i)=t;
+    Q_tab(:,i)=Q;
+    DQ_tab(:,i)=DQ;
+    DDQ_tab(:,i)=DDQ;
     
     i=i+1;
     
 end
+plot(T,DDQ_tab(29,:))
