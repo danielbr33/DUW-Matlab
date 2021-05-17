@@ -1,8 +1,0 @@
-function [q, dq, ddq] = liczPunkt(Q, DQ, DDQ, UkladyWspolrzednych, WspolrzednePunktu, numerCzlonu)
-    r = WspolrzednePunktu - UkladyWspolrzednych(numerCzlonu, 1:2);
-    R = 
-    q = Q(numerCzlonu*3-2:numerCzlonu*3-1) + Rot(numerCzlonu*3)*r;
-    Om = [0 -1;
-          1  0];
-    
-end

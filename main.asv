@@ -40,7 +40,7 @@ for t=0:DT:T_MAX
     DQ_tab(:,i)=DQ;
     DDQ_tab(:,i)=DDQ;
     
-    [q(1:2,i), dq(1:2,i), ddq(1:2,i)] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [0.2  0.4]', 5);
+    [q(1:2,i), dq(1:2,i), ddq(1:2,i)] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [0.2  0.4]', 3);
 
     i=i+1;  
     
