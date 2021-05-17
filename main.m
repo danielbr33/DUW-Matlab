@@ -39,11 +39,12 @@ for t=0:DT:T_MAX
     Q_tab(:,i)=Q;
     DQ_tab(:,i)=DQ;
     DDQ_tab(:,i)=DDQ;
-    
+    [q(1:2,i), dq(1:2,i), ddq(1:2,i)] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [0.6  0.6]', 5);
+
     i=i+1;  
+ 
 end
 
-    [q, dq, ddq] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [1.85  0.45]', 10);
 
 
 %wyswietlanie wynikow dla czlonu 10
@@ -84,3 +85,5 @@ title('przyspieszenie katowe');
 xlabel('czas [s]');
 ylabel('przyspieszenie katowe [rad/s^2]');
 sgtitle('Czlon 10') 
+
+subplot(3,3,9); plot(T,ddq);
