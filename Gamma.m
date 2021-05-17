@@ -117,4 +117,5 @@ end
     
     F(k+1)=F(k+1)+(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
     k=k+1;
- end
+  end
+ fclose(temp);

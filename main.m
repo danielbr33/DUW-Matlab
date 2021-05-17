@@ -39,6 +39,10 @@ for t=0:DT:T_MAX
     Q_tab(:,i)=Q;
     DQ_tab(:,i)=DQ;
     DDQ_tab(:,i)=DDQ;
+    
+    fi(i) = Q(5*3);
+    w(i) = DQ(5*3);
+    e(i) = DDQ(5*3);
     [q(1:2,i), dq(1:2,i), ddq(1:2,i)] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [0.6  0.6]', 5);
 
     i=i+1;  
@@ -86,4 +90,9 @@ xlabel('czas [s]');
 ylabel('przyspieszenie katowe [rad/s^2]');
 sgtitle('Czlon 10') 
 
-subplot(3,3,9); plot(T,ddq);
+subplot(3,3,7); 
+plot(T,w);
+subplot(3,3,8); 
+plot(T,e);
+subplot(3,3,9); 
+plot(T,ddq);
