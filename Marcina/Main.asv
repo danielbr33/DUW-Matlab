@@ -51,4 +51,6 @@ function [time, q, dq, ddq, M] = Main(dt, time_max)
     
         Iterations = Iterations + 1;
     end
-    end
+    
+    [q, dq, ddq] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [
+end

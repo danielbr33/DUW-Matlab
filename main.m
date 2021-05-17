@@ -40,9 +40,11 @@ for t=0:DT:T_MAX
     DQ_tab(:,i)=DQ;
     DDQ_tab(:,i)=DDQ;
     
-    i=i+1;
-    
+    i=i+1;  
 end
+
+    [q, dq, ddq] = liczPunkt(Q,DQ,DDQ, UkladyWspolrzednych, [1.85  0.45]', 10);
+
 
 %wyswietlanie wynikow dla czlonu 10
 subplot(3,3,1); plot(T,Q_tab(28,:));
