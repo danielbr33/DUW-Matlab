@@ -4,8 +4,8 @@ T_MAX = 30;
 [Q, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
 wymuszeniaParametry = WczytajWymuszenia();
 
-n=1;                    %numer wybranego czlonu
-rA=[0.2;0.4];           %pozycja analizowanego punktu w ukladzie globalnym danego czlonu
+n=10;                    %numer wybranego czlonu
+rA=[1.85;0.45];           %pozycja analizowanego punktu w ukladzie globalnym danego czlonu
 sA=rA-Q(3*n-2:3*n-1);   %pozycja analizowanego pumktu w ukladzie lokalnym
 
 Om=[0 -1;1 0];
