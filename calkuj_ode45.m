@@ -5,6 +5,7 @@ t0=0;
 
 Y0=[q0;dq0];
 
+OPTIONS = odeset('RelTol', 1e-6, 'AbsTol', 1e-9);
 [t,Y]=ode45(@H,[t0,dt],Y0);
 
 toc
