@@ -1,5 +1,5 @@
 DT = 0.1;
-T_MAX = 30;
+T_MAX = 5;      %czas zmieniony - wymagania zadania
 
 [Q, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
 wymuszeniaParametry = WczytajWymuszenia();
