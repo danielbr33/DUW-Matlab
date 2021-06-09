@@ -21,5 +21,3 @@ x=A\b;
 
 dY(1:n,1)=dq;
 dY((n+1):(2*n),1)=x(1:n,1); %przyspieszenia
-
-end

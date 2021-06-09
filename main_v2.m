@@ -153,4 +153,3 @@ ddqK=[dY((n+1):(2*n),:)];
 % xlabel('czas [s]');
 % ylabel('przyspieszenie katowe [rad/s^2]');
 % grid on;
-% sgtitle('Wyniki') 
