@@ -1,21 +1,24 @@
-function dY=H(t,Y, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,Masy, Bezwladnosci, Fi, FiDQ_DQ, Gamma,Sily,WczytajMasyBezwladnosci )
+function dY=H(t,Y)
+
+[Q0, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
+WymuszeniaParametry = WczytajWymuszenia();
+[Masy, Bezwladnosci, Macierz] = WczytajMasyBezwladnosci;
 
 temp = fopen('DanePliki/UkladyWspolrzednych.txt', 'r');
 number = str2num(fgetl(temp));
 fclose(temp);
-
-n=number;
+n=number*3;
 
 q=Y(1:n,:);
 dq=Y((n+1):(2*n),:);
 
 F=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
-Fq=FiDQ_DQ(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
+Fq=Fidq_dq(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
-M=WczytajMasyBezwladnosci();    %tu idk jak powinno byc
-Q=Sily(q, dq, UkladyWspolrzednych, ParyPostepowe, Masy, Bezwladnosci);
+M = Macierz;
+Q = Sily (q, dq, ParyPostepowe, Masy)
 
-A=[M,Fq'; Fq, zeros(4,4)];
+A=[M,Fq'; Fq, zeros(27,27)];
 b=[Q;G];
 x=A\b;
 

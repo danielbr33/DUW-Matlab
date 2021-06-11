@@ -18,8 +18,8 @@ function [F] = Sily (Q, DQ, ParyPostepowe, Masy)
     end
 
     %% Sily od t³umika pierwszego, wzory 3.22-3.30
-    A = [0.05 0.1]';
-    D = [0.15 0.3]';
+    A = [0 0]';
+    D = [0.2 0.4]';
     Om=[0 -1;1 0];
     r3 = Q(3*3-2: 3*3-1);
     r4 = Q(4*3-2: 4*3-1);
@@ -46,12 +46,12 @@ function [F] = Sily (Q, DQ, ParyPostepowe, Masy)
     FKj = [eye(2,2); (Om*R3*sB)']*(-u*Fk);
     FCi = [eye(2,2); (Om*R4*sA)']*u*Fc;
     FCj = [eye(2,2); (Om*R3*sB)']*(-u*Fc);
-    F(3*3-2:3*3) = F(3*3-2:3*3) + FKj + FCj;
-    F(4*3-2:4*3) = F(4*3-2:4*3) - FKi - FCi;
+    F(3*3-2:3*3-) = F(3*3-2:3*3-1) + FKj + FCj;
+    F(4*3-2:4*3-1) = F(4*3-2:4*3-1) - FKi - FCi;
 
     %% Sily od t³umika drugiego, wzory 3.22-3.30
-    B = [0.15 0.45]';
-    H = [0.45 0.55]';
+    B = [0 0.4]';
+    H = [0.6 0.6]';
     Om=[0 -1;1 0];
     r5 = Q(5*3-2: 5*3-1);
     r6 = Q(6*3-2: 6*3-1);
@@ -65,7 +65,7 @@ function [F] = Sily (Q, DQ, ParyPostepowe, Masy)
     dfi6 = DQ(6*3);
     d = r6 + R6*sB - r5 - R5*sA;
     u = d/norm(d);
-    vA = dr5 + Om*R5*sA*dfi5;
+    vA = dr5 + Om*R5*sA*fdi5;
     vB = dr6 + Om*R6*sB*dfi6;
     ddt = u'*(vB-vA);
     k = 70000;
@@ -77,7 +77,7 @@ function [F] = Sily (Q, DQ, ParyPostepowe, Masy)
     FKj = [eye(2,2); (Om*R6*sB)']*(-u*Fk);
     FCi = [eye(2,2); (Om*R5*sA)']*u*Fc;
     FCj = [eye(2,2); (Om*R6*sB)']*(-u*Fc);
-    F(5*3-2:5*3) = F(5*3-2:5*3) + FKi + FCi;
-    F(6*3-2:6*3) = F(6*3-2:6*3) - FKj - FCj;
+    F(5*3-2:5*3-1) = F(5*3-2:5*3-1) + FKi + FCi;
+    F(6*3-2:6*3-1) = F(6*3-2:6*3-1) - FKj - FCj;
 
 end
