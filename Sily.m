@@ -1,4 +1,4 @@
-function [Q] = Sily (Q, DQ, UkladyWspolrzednych, ParyPostepowe, Masy, Bezwladnosci)
+function [F] = Sily (Q, DQ, ParyPostepowe, Masy)
     number = length(Q(:,1));
     Q=zeros(number,1);
 

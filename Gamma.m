@@ -14,7 +14,7 @@ function F = Gamma(Q,DQ, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t)
  fclose(temp);
  
  Om=[0 -1;1 0];
- F=zeros(2*(nobr+npos)+nwym,1);      %deklaracja rozm macierzy
+ F=zeros(2*(nobr+npos),1);      %deklaracja rozm macierzy
  k=0; 
  
 %% Pary obrotowe, wzór 2.40
@@ -80,42 +80,42 @@ end
     k=k+2;
  end
  
-%% Wymuszenia, wzór 2.59, opis na stronie 52
-  temp = fopen('DanePliki/Wymuszenia.txt', 'r');
-  number = str2num(fgetl(temp));
-  for m=1:1:number
-    dane = str2num(fgetl(temp));
-    i=3*dane(1);
-    j=3*dane(2);
-    if i==0
-        ri=[0 0]';
-        fii=0;
-        dri=[0 0]';
-        dfii=0;
-    else
-        ri=Q(i-2:i-1);
-        fii=Q(i);
-        dri=DQ(i-2:i-1);
-        dfii=DQ(i);
-    end
-    if j==0
-        rj=[0 0]';
-        fij=0;
-        drj=[0 0]';
-        dfij=0;
-    else
-        rj=Q(j-2:j-1);
-        fij=Q(j);
-        drj=DQ(j-2:j-1);
-        dfij=DQ(j);
-    end
-    sa = WymuszeniaParametry(m, 8:9)';
-    sb = WymuszeniaParametry(m, 10:11)';
-    kat = WymuszeniaParametry(m, 7);
-    uj = Rot(kat)*[1 0]';
-    f_AB = LiczWymuszenia(Q, t, 2, m, WymuszeniaParametry);
-    
-    F(k+1)=F(k+1)+(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
-    k=k+1;
-  end
- fclose(temp);
+% %% Wymuszenia, wzór 2.59, opis na stronie 52
+%   temp = fopen('DanePliki/Wymuszenia.txt', 'r');
+%   number = str2num(fgetl(temp));
+%   for m=1:1:number
+%     dane = str2num(fgetl(temp));
+%     i=3*dane(1);
+%     j=3*dane(2);
+%     if i==0
+%         ri=[0 0]';
+%         fii=0;
+%         dri=[0 0]';
+%         dfii=0;
+%     else
+%         ri=Q(i-2:i-1);
+%         fii=Q(i);
+%         dri=DQ(i-2:i-1);
+%         dfii=DQ(i);
+%     end
+%     if j==0
+%         rj=[0 0]';
+%         fij=0;
+%         drj=[0 0]';
+%         dfij=0;
+%     else
+%         rj=Q(j-2:j-1);
+%         fij=Q(j);
+%         drj=DQ(j-2:j-1);
+%         dfij=DQ(j);
+%     end
+%     sa = WymuszeniaParametry(m, 8:9)';
+%     sb = WymuszeniaParametry(m, 10:11)';
+%     kat = WymuszeniaParametry(m, 7);
+%     uj = Rot(kat)*[1 0]';
+%     f_AB = LiczWymuszenia(Q, t, 2, m, WymuszeniaParametry);
+%     
+%     F(k+1)=F(k+1)+(Rot(fij)*uj)'*(2*Om*(drj-dri)*dfij+(rj-ri)*dfij*dfij-Rot(fii)*s_a*(dfij-dfii)^2)+f_AB;
+%     k=k+1;
+%   end
+% fclose(temp);

@@ -4,7 +4,7 @@ time=0:DT:T_MAX;
 
 [Q0, UkladyWspolrzednych, ParyObrotowe, ParyPostepowe] = ReadStartData;
 wymuszeniaParametry = WczytajWymuszenia();
-[Masy, Bezwladnosci, M] = WczytajMasyBezwladnosci;
+[Masy, Bezwladnosci, M] 
 
 %do wpisania:
 n=10;                     %numer wybranego czlonu
@@ -17,8 +17,7 @@ Q=Q0;
 DQ0=zeros(length(Q),1);
 DQ=DQ0;
 DDQ=zeros(length(Q),1);
-Y0=[Q0;DQ0];            
-F = Sily (Q, DQ, UkladyWspolrzednych, ParyPostepowe, Masy, Bezwladnosci)
+Y0=[Q0;DQ0];                
 
 Polozenia=zeros(3,length(time));
 Predkosci=zeros(3,length(time));
