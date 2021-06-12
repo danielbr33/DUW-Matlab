@@ -13,7 +13,7 @@ q=Y(1:n);
 dq=Y((n+1):(2*n));
 
 F=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
-Fq=Fidq_dq(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
+Fq=Jakobian(q, ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
 M = Macierz;
 Q = Sily(q, dq, ParyPostepowe, Masy);

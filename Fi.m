@@ -14,7 +14,7 @@ function F=Fi(Q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
  fclose(temp);
  
  k=0;                               %licznik rownan wiezow
- F=zeros(2*(nobr+npos)+nwym,1);     %deklaracja rozmiaru wektora
+ F=zeros(2*(nobr+npos),1);     %deklaracja rozmiaru wektora
     
  %% na podstawie wzoru 2.18 - pary obrotowe
  for m=1:nobr

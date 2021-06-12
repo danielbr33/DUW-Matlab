@@ -95,7 +95,7 @@ end
 %      k=k+1;
 %      
 %  end
- if(det(Fq)==0)
+% fclose(temp);
+ if(det(Fq(1:28, 1:28))==0)
         disp('Jakobian jest osobliwy');
  end
- fclose(temp);

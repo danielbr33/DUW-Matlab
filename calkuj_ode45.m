@@ -21,12 +21,7 @@ dqK=Y(n,(m+1):(2*m))';
 q_dq=[qK dqK]
 
 %dziwny ruch - nwm czy do konca dobrze
-Fi=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
-Fq=FiDQ_DQ(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
-G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
-M = Macierz;
-Q = Sily (d, dq, UkladyWspolrzednych, ParyPostepowe, Masy, Bezwladnosci)
-F = [Fi, Fq, G, M, Q];
+F=Fi(qK,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 norm_F=norm(F);
 
 end
