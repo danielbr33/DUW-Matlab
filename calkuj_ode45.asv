@@ -35,12 +35,11 @@ for i=1:n
     err_dF(i)=norm(FQ*dq);          % B³¹d wiêzów dla prêdkoœci
     err_d2F(i)=norm(FQ*d2q-G);      % B³¹d wiêzów dla przyspieszeñ
 end
-%plot(t,err_F,'b','LineWidth',2); hold on;
-%plot(t,err_dF,'g','LineWidth',2);
-%plot(t,err_d2F,'r','LineWidth',2);
-%grid;
-%legend('Po³o¿enia','Prêdkoœci','Przyspieszenia'); hold off;
+plot(t,err_F,'b','LineWidth',2); hold on;
+plot(t,err_dF,'g','LineWidth',2);
+plot(t,err_d2F,'r','LineWidth',2);
+grid;
+legend('Po³o¿enia','Prêdkoœci','Przyspieszenia'); hold off;
 
-plot(t,Y(:,28));
 
 end
