@@ -13,14 +13,14 @@ q=Y(1:n);
 dq=Y((n+1):(2*n));
 
 F=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
-Fq=Fidq_dq(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry)
+Fq=Fidq_dq(q,dq,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
 M = Macierz;
 Q = Sily(q, dq, ParyPostepowe, Masy);
 
 
 
-A=[M Fq';Fq zeros(28,28)];
+A=[M Fq';Fq zeros(30,30)];
 b=[Q;G];
 x=A\b;
 

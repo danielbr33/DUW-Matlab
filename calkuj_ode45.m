@@ -4,13 +4,16 @@ WymuszeniaParametry = WczytajWymuszenia();
 [Masy, Bezwladnosci, Macierz] = WczytajMasyBezwladnosci;
 dq0 = zeros(length(q0), 1);
 
-tic
+%disp(q0);
+%disp(dq0);
+
+%tic
 t0=0;
 Y0=[q0;dq0];
 
 [t,Y]=ode45(@H,[t0,tk],Y0);
 
-toc
+%toc
 n=size(Y,1);
 m = length(q0);
 qK=Y(n,1:m)';
