@@ -55,12 +55,12 @@ Przyspieszenia=zeros(3,length(n));
 n=9;                     %numer wybranego czlonu
 rA=[1.55;0.8];           %pozycja analizowanego punktu w ukladzie globalnym danego czlonu
 sA=rA-q0(3*n-2:3*n-1);     %pozycja analizowanego pumktu w ukladzie lokalnym
-    Polozenia(1:2,:)=Y(:,3*n-2:3*n-1)'+Rot(Y(:,(3*n))')*sA;
-    Polozenia(3,:)=Y(:,(3*n))';
-    Predkosci(1:2,:)=Y(:,30+3*n-2:30+3*n-1)'+Om*Rot(Y(:,30+3*n)')*sA*Y(:,30+3*n)';
-    Predkosci(3,:)=Y(:,30+3*n)';
-    Przyspieszenia(1:2,:)=ddq(:,3*n-2:3*n-1)'+Om*Rot(Y(:,3*n)')*sA*ddq(:,3*n)'-Rot(Y(:,3*n)')*sA*Y(:,30+3*n)'*Y(:,30+3*n)';
-    Przyspieszenia(3,:)=ddq(:,3*n)';
+    Polozenia(1:2,:)=Y(:,3*n-2:3*n-1)+Rot(Y(:,(3*n)))*sA;
+    Polozenia(3,:)=Y(:,(3*n));
+    Predkosci(1:2,:)=Y(:,30+3*n-2:30+3*n-1)+Om*Rot(Y(:,30+3*n))*sA*Y(:,30+3*n);
+    Predkosci(3,:)=Y(:,30+3*n);
+    Przyspieszenia(1:2,:)=ddq(:,3*n-2:3*n-1)+Om*Rot(Y(:,3*n))*sA*ddq(:,3*n)-Rot(Y(:,3*n))*sA*Y(:,30+3*n)*Y(:,30+3*n);
+    Przyspieszenia(3,:)=ddq(:,3*n);
     
     
     

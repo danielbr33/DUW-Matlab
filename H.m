@@ -9,8 +9,8 @@ number = str2num(fgetl(temp));
 fclose(temp);
 n=number*3;
 
-q=Y(1:n);
-dq=Y((n+1):(2*n));
+q=Y(1:n,:);
+dq=Y((n+1):(2*n),:);
 
 F=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
 Fq=Jakobian(q, ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
