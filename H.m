@@ -18,10 +18,11 @@ G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
 M = Macierz;
 Q = Sily(q, dq, ParyPostepowe, Masy);
 
-
+alfa = 5;
+beta = 5;
 
 A=[M Fq';Fq zeros(28,28)];
-b=[Q;G];
+b=[Q;G-2*alfa*Fq*dq-beta^2*F];
 x=A\b;
 
 dY(1:n,1)=dq;

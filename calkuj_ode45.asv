@@ -43,15 +43,15 @@ for i=1:n
     err_d2F(i)=norm(FQ*d2q-G);      % B³¹d wiêzów dla przyspieszeñ
     
     
-    n=9;                     %numer wybranego czlonu
-    rA=[1.55;0.8];           %pozycja analizowanego punktu w ukladzie globalnym danego czlonu
-    sA=rA-q0(3*n-2:3*n-1);     %pozycja analizowanego pumktu w ukladzie lokalnym
-    Polozenia(1:2,i)=q(3*n-2:3*n-1)+Rot(q((3*n)))*sA;
-    Polozenia(3,i)=q((3*n));
-    Predkosci(1:2,i)=dq(3*n-2:3*n-1)+Om*Rot(dq(3*n))*sA*dq(3*n);
-    Predkosci(3,i)=dq(3*n);
-    Przyspieszenia(1:2,i)=d2q(3*n-2:3*n-1)+Om*Rot(q(3*n))*sA*d2q(3*n)-Rot(q(3*n))*sA*dq(3*n)*dq(3*n);
-    Przyspieszenia(3,i)=d2q(3*n);
+    k=10;                     %numer wybranego czlonu
+    rA=[2;0.4];           %pozycja analizowanego punktu w ukladzie globalnym danego czlonu
+    sA=rA-q0(3*k-2:3*k-1);     %pozycja analizowanego pumktu w ukladzie lokalnym
+    Polozenia(1:2,i)=q(3*k-2:3*k-1)+Rot(q((3*k)))*sA;
+    Polozenia(3,i)=q((3*k));
+    Predkosci(1:2,i)=dq(3*k-2:3*k-1)+Om*Rot(q(3*k))*sA*dq(3*k);
+    Predkosci(3,i)=dq(3*k);
+    Przyspieszenia(1:2,i)=d2q(3*k-2:3*k-1)+Om*Rot(q(3*k))*sA*d2q(3*k)-Rot(q(3*k))*sA*dq(3*k)*dq(3*k);
+    Przyspieszenia(3,i)=d2q(3*k);
     
 end
 %plot(t,err_F,'b','LineWidth',2); hold on;
@@ -60,7 +60,7 @@ end
 %grid;
 %legend('Po³o¿enia','Prêdkoœci','Przyspieszenia'); hold off;
 
-plot(t,Y(:,28));
+%plot(t,Y(:,28));
 
 
     
@@ -79,7 +79,7 @@ xlabel('czas [s]');
 ylabel('polozenie [m]');
 grid on;
 subplot(3,3,3);
-plot(t,Polozenia(3*n,:));
+plot(t,Polozenia(3,:));
 title('kat obrotu');
 xlabel('czas [s]');
 ylabel('kat obrotu [rad]'); 

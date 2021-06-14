@@ -14,8 +14,8 @@ Y0=[q0;dq0];
 [t,Y]=ode45(@H,t0:0.01:tk,Y0);
 
 %toc
-n=size(Y,1); % Liczba wierszy w tablicy wynikÃ³w
-err_F(n)=0; err_dF(n)=0; err_d2F(n)=0; % NiespeÅ‚nienie wiÄ™zÃ³w - deklaracja dÅ‚ugoÅ›ci wektorÃ³w 
+n=size(Y,1); % Liczba wierszy w tablicy wyników
+err_F(n)=0; err_dF(n)=0; err_d2F(n)=0; % Niespe³nienie wiêzów - deklaracja d³ugoœci wektorów 
 m = length(q0);
 ddq(n,m)=0;
 Polozenia=zeros(3,length(n));
@@ -23,7 +23,7 @@ Predkosci=zeros(3,length(n));
 Przyspieszenia=zeros(3,length(n));
 
 for i=1:n
-    q=Y(i,1:m)'; dq=Y(i,m+1:2*m)';  % PoÅ‚oÅ¼enia i prÄ™dkoÅ›ci w i-tym stablicowanym kroku
+    q=Y(i,1:m)'; dq=Y(i,m+1:2*m)';  % Po³o¿enia i prêdkoœci w i-tym stablicowanym kroku
     FI=Fi(q,t,ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
     FQ=Jakobian(q, ParyObrotowe, ParyPostepowe, WymuszeniaParametry);
     G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
@@ -37,10 +37,10 @@ for i=1:n
     ddq(i,:)=x(1:m,1);
     
    
-    % Obliczenie miar rozerwania wiÄ™zÃ³w
-    err_F(i)=norm(FI);               % BÅ‚Ä…d wiÄ™zÃ³w dla poÅ‚oÅ¼eÅ„
-    err_dF(i)=norm(FQ*dq);          % BÅ‚Ä…d wiÄ™zÃ³w dla prÄ™dkoÅ›ci
-    err_d2F(i)=norm(FQ*d2q-G);      % BÅ‚Ä…d wiÄ™zÃ³w dla przyspieszeÅ„
+    % Obliczenie miar rozerwania wiêzów
+    err_F(i)=norm(FI);               % B³¹d wiêzów dla po³o¿eñ
+    err_dF(i)=norm(FQ*dq);          % B³¹d wiêzów dla prêdkoœci
+    err_d2F(i)=norm(FQ*d2q-G);      % B³¹d wiêzów dla przyspieszeñ
     
     
     k=10;                     %numer wybranego czlonu
@@ -48,18 +48,17 @@ for i=1:n
     sA=rA-q0(3*k-2:3*k-1);     %pozycja analizowanego pumktu w ukladzie lokalnym
     Polozenia(1:2,i)=q(3*k-2:3*k-1)+Rot(q((3*k)))*sA;
     Polozenia(3,i)=q((3*k));
-    Predkosci(1:2,i)=dq(3*k-2:3*k-1)+Om*Rot(dq(3*k))*sA*dq(3*k);
+    Predkosci(1:2,i)=dq(3*k-2:3*k-1)+Om*Rot(q(3*k))*sA*dq(3*k);
     Predkosci(3,i)=dq(3*k);
     Przyspieszenia(1:2,i)=d2q(3*k-2:3*k-1)+Om*Rot(q(3*k))*sA*d2q(3*k)-Rot(q(3*k))*sA*dq(3*k)*dq(3*k);
     Przyspieszenia(3,i)=d2q(3*k);
-
     
 end
 %plot(t,err_F,'b','LineWidth',2); hold on;
 %plot(t,err_dF,'g','LineWidth',2);
 %plot(t,err_d2F,'r','LineWidth',2);
 %grid;
-%legend('PoÅ‚oÅ¼enia','PrÄ™dkoÅ›ci','Przyspieszenia'); hold off;
+%legend('Po³o¿enia','Prêdkoœci','Przyspieszenia'); hold off;
 
 %plot(t,Y(:,28));
 
