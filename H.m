@@ -18,8 +18,8 @@ G=Gamma(q,dq, ParyObrotowe, ParyPostepowe, WymuszeniaParametry,t);
 M = Macierz;
 Q = Sily(q, dq, ParyPostepowe, Masy);
 
-alfa = 5;
-beta = 5;
+alfa = 0;
+beta = 0;
 
 A=[M Fq';Fq zeros(28,28)];
 b=[Q;G-2*alfa*Fq*dq-beta^2*F];
